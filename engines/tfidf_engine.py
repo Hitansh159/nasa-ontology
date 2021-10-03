@@ -14,7 +14,7 @@ def clean_sentence(s):
     return (" ".join(sen))
 
 
-def search(query):
+def search(query: str, n: int = 200):
     vectorizer = pickle.load(open("tfidf_vectorizer.pkl", "rb"))
     x = clean_sentence(query)
     x = vectorizer.transform([x])
@@ -23,3 +23,6 @@ def search(query):
     distances = (np.max(neighbours[0]) - neighbours[0]) / \
         ((np.max(neighbours[0])-(np.min(neighbours[0]))))
     return (list(zip(neighbours[1][0].tolist(), distances[0].tolist())))
+
+
+print(search("Heli sddfv"))
