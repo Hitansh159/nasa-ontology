@@ -19,7 +19,7 @@ def search(query: str, n: int = 200):
     x = clean_sentence(query)
     x = vectorizer.transform([x])
     knn = pickle.load(open("tfidf_knn.pkl", "rb"))
-    neighbours = knn.kneighbors(x[0], 200)
+    neighbours = knn.kneighbors(x[0], n)
     distances = (np.max(neighbours[0]) - neighbours[0]) / \
         ((np.max(neighbours[0])-(np.min(neighbours[0]))))
     return (list(zip(neighbours[1][0].tolist(), distances[0].tolist())))
