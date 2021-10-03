@@ -3,11 +3,13 @@
 
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet"
     integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@300&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@300&display=swap" rel="stylesheet">
 <style>
-    font-family: 'Ubuntu', sans-serif;
+    font-family: 'Ubuntu',
+    sans-serif;
+
     body {
         font-family: 'Architects Daughter', cursive;
     }
@@ -34,139 +36,125 @@
 </style>
 
 <body onload="init()" style="background-color: ;">
-    <!-- navbar  -->
-    <!-- <nav class="navbar navbar-light" style="background-color: #e3f2fd;">
-        <div class="container-fluid">
-            <a class="navbar-brand" href="#">Navbar</a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown"
-                aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarNavDropdown">
-                <ul class="navbar-nav">
-                    <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="#">Home</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Features</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Pricing</a>
-                    </li>
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button"
-                            data-bs-toggle="dropdown" aria-expanded="false">
-                            Dropdown link
-                        </a>
-                        <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                            <li><a class="dropdown-item" href="#">Action</a></li>
-                            <li><a class="dropdown-item" href="#">Another action</a></li>
-                            <li><a class="dropdown-item" href="#">Something else here</a></li>
-                        </ul>
-                    </li>
-                </ul>
-            </div>
-        </div>
-    </nav> -->
- 
-    <div id="container">   
+
+
+    <div id="container">
         <nav class="navbar navbar-light bg-light p-3">
             <a class="navbar-brand" href="#">
-              <img src="logo.png" width="30" height="30" class="d-inline-block align-top" alt="">
-              NASA
+                <img src="logo.png" width="30" height="30" class="d-inline-block align-top" alt="">
+                NASA
             </a>
-          </nav>
+        </nav>
         <form class="form-inline " style="padding: 10px;">
             <div class="row">
-                <div class="col-10">   <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search"></div>
-                <div class="col-2"><button class="btn btn-outline-success my-2 my-sm-0" type="submit" style="width: 130px;">Search</button></div>
-              </div>
-          </form>        
-        
-              <div class="container" style="padding: 10px;">
+                <div class="col-10"> <input class="form-control mr-sm-2" type="text" placeholder="Search"
+                        aria-label="Search" id="search"></div>
+                <div class="col-2"><button class="btn btn-outline-success my-2 my-sm-0" type="button"
+                        style="width: 130px;" onclick=query_dataset()>Search</button></div>
+            </div>
+        </form>
+
+        <div class="container-fluid">
             <div class="row">
                 <div class="col-9" id="">
-              
+
                     <svg style="display: block;background: aquamarine;"></svg>
                 </div>
                 <div class="col-3">
-                    <div style="padding:10px"> 
-                        <div class="dropdown" >
-                            <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" 
-                            data-toggle="dropdown" aria-haspopup="true"
-                             aria-expanded="false" style = "width: 100%;">
-                              Search Engine
+                    <div style="padding:10px">
+                        <div class="dropdown">
+                            <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton"
+                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="width: 100%;">
+                                Search Engine
                             </button>
-                            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton" style = "width: 100%;">
-                              <div class="dropdown-item" >Action</div>
-                              <div class="dropdown-item" href="#">Another action</div>
-                              <div class="dropdown-item" href="#">Something else here</div>
+                            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton" style="width: 100%;">
+                                <div class="dropdown-item">Action</div>
+                                <div class="dropdown-item" href="#">Another action</div>
+                                <div class="dropdown-item" href="#">Something else here</div>
                             </div>
-                          </div>
-                          <div>
+                        </div>
+                        <div>
                             <div class="form-check p-3 m-3 ">
                                 <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
                                 <label class="form-check-label" for="flexCheckDefault">
-                                  Default checkbox
+                                    Default checkbox
                                 </label>
-                              </div>
-                              <div class="form-check p-3  m-3">
+                            </div>
+                            <div class="form-check p-3  m-3">
                                 <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
                                 <label class="form-check-label" for="flexCheckDefault">
-                                  Default checkbox
+                                    Default checkbox
                                 </label>
-                              </div>
-                              <div class="form-check p-3  m-3">
+                            </div>
+                            <div class="form-check p-3  m-3">
                                 <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
                                 <label class="form-check-label" for="flexCheckDefault">
-                                  Default checkbox
+                                    Default checkbox
                                 </label>
-                              </div>
-                              
-                     
-                          </div>
-                          <!-- <div>
-                           
-                            <form class="multi-range-field mt-2 ">
-                                <p> Text Data slider </p>
-                                <input id="multi10" class="multi-range" type="range"  style = "width: 100%;" />
-                              </form>
-                              <form class="multi-range-field mt-2 ">
-                                <p> Text Data slider </p>
-                                <input id="multi11" class="multi-range" type="range"  style = "width: 100%;" />
-                              </form>
-                              <form class="multi-range-field mt-2  ">
-                                <p> Text Data slider </p>
-                                <input id="multi12" class="multi-range" type="range"  style = "width: 100%;" />
-                              </form>
-                          </div> -->
-                          <div>
-                              <p>History</p>
-                              <div style="width:100%;height:300px;line-height:3em;overflow:auto;padding:5px;">
-                                This 'div' element contains more content than the previous one. Because there's too much text to fit into the box, the box grows scrollbars. 
-                                This 'div' element contains more content than the previous one. Because there's too much text to fit into the box, the box grows scrollbars. 
-                                This 'div' element contains more content than the previous one. Because there's too much text to fit into the box, the box grows scrollbars. 
-                                This 'div' element contains more content than the previous one. Because there's too much text to fit into the box, the box grows scrollbars. 
-                                This 'div' element contains more content than the previous one. Because there's too much text to fit into the box, the box grows scrollbars. 
-                                This 'div' element contains more content than the previous one. Because there's too much text to fit into the box, the box grows scrollbars. 
-                                This 'div' element contains more content than the previous one. Because there's too much text to fit into the box, the box grows scrollbars. 
-                                This 'div' element contains more content than the previous one. Because there's too much text to fit into the box, the box grows scrollbars. 
-                                This 'div' element contains more content than the previous one. Because there's too much text to fit into the box, the box grows scrollbars. 
-                                This 'div' element contains more content than the previous one. Because there's too much text to fit into the box, the box grows scrollbars. 
-                                This 'div' element contains more content than the previous one. Because there's too much text to fit into the box, the box grows scrollbars. 
-                                This 'div' element contains more content than the previous one. Because there's too much text to fit into the box, the box grows scrollbars. This 'div' element contains more content than the previous one. Because there's too much text to fit into the box, the box grows scrollbars. 
-                                
-                                </div>
-                          </div>
-                      
+                            </div>
+
+
                         </div>
+                        <div>
+                            <p>History</p>
+                            <div style="width:100%;height:300px;line-height:3em;overflow:auto;padding:5px;">
+                                This 'div' element contains more content than the previous one. Because there's too much
+                                text to fit into the box, the box grows scrollbars.
+                                This 'div' element contains more content than the previous one. Because there's too much
+                                text to fit into the box, the box grows scrollbars.
+                                This 'div' element contains more content than the previous one. Because there's too much
+                                text to fit into the box, the box grows scrollbars.
+                                This 'div' element contains more content than the previous one. Because there's too much
+                                text to fit into the box, the box grows scrollbars.
+                                This 'div' element contains more content than the previous one. Because there's too much
+                                text to fit into the box, the box grows scrollbars.
+                                This 'div' element contains more content than the previous one. Because there's too much
+                                text to fit into the box, the box grows scrollbars.
+                                This 'div' element contains more content than the previous one. Because there's too much
+                                text to fit into the box, the box grows scrollbars.
+                                This 'div' element contains more content than the previous one. Because there's too much
+                                text to fit into the box, the box grows scrollbars.
+                                This 'div' element contains more content than the previous one. Because there's too much
+                                text to fit into the box, the box grows scrollbars.
+                                This 'div' element contains more content than the previous one. Because there's too much
+                                text to fit into the box, the box grows scrollbars.
+                                This 'div' element contains more content than the previous one. Because there's too much
+                                text to fit into the box, the box grows scrollbars.
+                                This 'div' element contains more content than the previous one. Because there's too much
+                                text to fit into the box, the box grows scrollbars. This 'div' element contains more
+                                content than the previous one. Because there's too much text to fit into the box, the
+                                box grows scrollbars.
+
+                            </div>
+                        </div>
+
+                    </div>
                 </div>
             </div>
         </div>
-     </div>
-                      
-    </div> 
+    </div>
 
+    </div>
+
+    </div>
+
+    <!-- modal -->
+    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    ...
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary">Save changes</button>
+                </div>
+            </div>
+        </div>
     </div>
 
 </body>
@@ -174,37 +162,37 @@
 <script src="https://d3js.org/d3.v4.min.js"></script>
 <link href="https://fonts.googleapis.com/css?family=Architects+Daughter" rel="stylesheet">
 <script>
-    $('#multi10').mdbRange({
-        single: {
-          active: true,
-          value: {
-            step: 1,
-            symbol: ''
-          }
-        }
-      });
-      
-      $('#multi11').mdbRange({
-        single: {
-          active: true,
-          value: {
-            step: 2,
-            symbol: '$'
-          }
-        }
-      });
-      $('#multi12').mdbRange({
-        single: {
-          active: true,
-          value: {
-            step: 5,
-            symbol: '&#10052;'
-          }
-        }
-      });// mulit range slider
+    // $('#multi10').mdbRange({
+    //     single: {
+    //         active: true,
+    //         value: {
+    //             step: 1,
+    //             symbol: ''
+    //         }
+    //     }
+    // });
+
+    // $('#multi11').mdbRange({
+    //     single: {
+    //         active: true,
+    //         value: {
+    //             step: 2,
+    //             symbol: '$'
+    //         }
+    //     }
+    // });
+    // $('#multi12').mdbRange({
+    //     single: {
+    //         active: true,
+    //         value: {
+    //             step: 5,
+    //             symbol: '&#10052;'
+    //         }
+    //     }
+    // });// mulit range slider
     function init() {
         // chart dimensions
-        var width = 950, height = 600, radius = 200;
+        var radius = 200, height = window.screen.height * 0.7, width = window.screen.width * 0.7;
 
         // set up svg  
         var svg = d3.select("svg")
@@ -219,10 +207,10 @@
 
         var simulation = d3.forceSimulation()
             .force("link", d3.forceLink().id(function (d) { return d.id; }))
-            .force("charge", d3.forceManyBody().strength(-400))
+            .force("charge", d3.forceManyBody().strength(-5))
             .force("center", d3.forceCenter(width / 2, height / 2));
 
-        d3.json("test2.json", function (error, graph) {
+        function vizualize(error, graph) {
 
             var link = svg.append("g")
                 .style("stroke", "#aaa")
@@ -237,10 +225,15 @@
                 .selectAll("circle")
                 .data(graph.nodes)
                 .enter().append("circle")
-                .attr("r", function (d) { return 20 })
-                .style("fill", function (d) { return d.fill })
+                .attr("r", function (d) { return 5 })
+                .attr('data-bs-toggle', "modal")
+                .attr('data-bs-target', "#exampleModal")
+                .style("fill", function (d) {
+                    console.log(d);
+                    return 'white'
+                })
                 .style("stroke", function (d) { return d.stroke })
-                .style("stroke-width", "1px")
+                .style("stroke-width", "0px")
                 .call(d3.drag()
                     .on("start", dragstarted)
                     .on("drag", dragged)
@@ -254,7 +247,7 @@
                 .attr('text-anchor', 'middle')
                 .attr('dominant-baseline', 'central')
                 .style('font-family', 'FontAwesome')
-                .style('font-size', '20px')
+                .style('font-size', '2px')
                 .text(function (d) { return d.name; })
                 .call(d3.drag()
                     .on("start", dragstarted)
@@ -263,9 +256,6 @@
                 .on('mouseover', function () {
                     console.log(this.innerHTML + " MouseOver");
                 })
-                .on('click', function () {
-                    console.log(this.innerHTML + " CLick");
-                });
 
             simulation
                 .nodes(graph.nodes)
@@ -306,31 +296,45 @@
                 d3.select("#id2").html(value);
             });
 
-        });
-
-
-        function dragstarted(d) {
-            if (!d3.event.active) simulation.alphaTarget(0.3).restart()
-            d.fx = d.x;
-            d.fy = d.y;
         }
+        datasets = {{ data | safe}}
+        vizualize(null, datasets)
 
-        function dragged(d) {
-            d.fx = d3.event.x;
-            d.fy = d3.event.y;
-        }
+    function dragstarted(d) {
+        if (!d3.event.active) simulation.alphaTarget(0.3).restart()
+        d.fx = d.x;
+        d.fy = d.y;
+    }
 
-        function dragended(d) {
-            if (!d3.event.active) simulation.alphaTarget(0);
-            d.fx = null;
-            d.fy = null;
-        }
+    function dragged(d) {
+        d.fx = d3.event.x;
+        d.fy = d3.event.y;
+    }
+
+    function dragended(d) {
+        if (!d3.event.active) simulation.alphaTarget(0);
+        d.fx = null;
+        d.fy = null;
+    }
 
     }
 
 
+    function query_dataset() {
+        location.href = `/dataset/${document.getElementById("search").value}`
+
+    }
 
 </script>
-<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+    integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+    crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+    integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+    crossorigin="anonymous"></script>
+<!-- <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+    integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+    crossorigin="anonymous"></script> -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+    crossorigin="anonymous"></script>
