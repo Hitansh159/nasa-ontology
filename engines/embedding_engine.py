@@ -2,10 +2,10 @@ import numpy as np
 import json
 import pickle
 
-model = pickle.load(open('', 'rb'))
+model = pickle.load(open('./storage/embedding-knn.pkl', 'rb'))
 
 word_embeddings = {}
-f = open('glove.6B.200d.txt', encoding='utf-8')
+f = open('./storage/glove.6B.100d.txt', encoding='utf-8')
 for line in f:
     values = line.split()
     word = values[0]
