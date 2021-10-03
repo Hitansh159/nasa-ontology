@@ -14,9 +14,19 @@ for line in f:
 f.close()
 
 def search(query:str, n:int = 200):
-    v = sum([word_embeddings.get(w, np.zeros((100,))) for w in query.split()])/(len(query.split())+0.001)
+
+    v = sum( map(lambda x: word_embeddings.get(x, np.zeros((100,))),  query.split()) ) / (len(query.split())+0.001)
+
     results = model.kneighbors([v])
+    # print(len(results[0][0]))
 
     distances = (np.max(results[0]) - results[0]) / \
         ((np.max(results[0])-(np.min(results[0]))))
-    return (list(zip(results[1][0].tolist(), distances[0].tolist())))
+    
+    return (list(zip(results[1][0].tolist(), distances[0].tolist())))[:n]
+
+
+
+
+
+
