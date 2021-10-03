@@ -15,6 +15,6 @@ def hello_world():
 @app.route('/dataset/<query>')
 def dataset(query):
     engine = 'embedding_engine'
-    result = bm25_engine.search(query)
+    result = embedding_engine.search(query)
     
     return f'query: {query}\nResults: {result}'
