@@ -19,7 +19,7 @@
         </a>
       </nav>
     <svg></svg>
-
+      <span id="tooltip"></span>
     <script>
 
         console.log('hello world');
@@ -81,10 +81,21 @@
                 .data(root.descendants().slice(1))
                 .join("circle")
                 .attr("fill", d => d.children ? color(d.data.name) : "white")
-                .attr("pointer-events", d => !d.children ? "none" : null)
-                .on("mouseover", function () { d3.select(this).attr("stroke", "#000"); })
+                .attr("pointer-events", d => !d.children ? null : null)
+                .on("mouseover", function (d) { 
+                    if(d.depth == 2){
+                        d3.select("#tooltip").text(d.data.name)
+                    }
+                    d3.select(this).attr("stroke", "#000"); })
                 .on("mouseout", function () { d3.select(this).attr("stroke", null); })
-                .on("click", (event, d) => focus !== d && (zoom(event, d), event.stopPropagation()));
+                .on("click", (event, d) => {
+                    console.log("clicked: ", d)
+                    if(!d.children){
+                        console.log("child");
+                        location.href = `/dataset/${d.data.name}`
+                    }
+                    focus !== d && (zoom(event, d), event.stopPropagation())
+                });
 
             const label = svg.append("g")
                 .style("font", "10px sans-serif")
@@ -132,7 +143,7 @@
             // return svg.node();
         };
 
-        d3.json('final_data.json')
+        d3.json('/static/final_data.json')
             .then(data => {
                 chart(data);
             });
