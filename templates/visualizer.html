@@ -147,7 +147,60 @@
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    ...
+                    <table>
+                        <tbody>
+                            <tr>
+                                <td>Title </td>
+                                <td>:</td>
+                                <td id="title">title</td>
+                            </tr>
+                            <tr>
+                                <td>Name </td>
+                                <td>:</td>
+                                <td id="name">Name</td>
+                            </tr>
+                            <tr>
+                                <td>Publisher </td>
+                                <td>:</td>
+                                <td id="publisher"> Value</td>
+                            </tr>
+                            <tr>
+                                <td>Issued On </td>
+                                <td>:</td>
+                                <td id="issued">Value</td>
+                            </tr>
+                            <tr>
+                                <td>Liscence </td>
+                                <td>:</td>
+                                <td id="liscence">Value</td>
+                            </tr>
+                            <tr>
+                                <td>Citation </td>
+                                <td>:</td>
+                                <td id="citation">Value</td>
+                            </tr>
+                            <tr>
+                                <td>Languauge </td>
+                                <td>:</td>
+                                <td id="languauge">Value</td>
+                            </tr>
+                            <tr>
+                                <td>Keywords </td>
+                                <td>:</td>
+                                <td id="keywords">Value</td>
+                            </tr>
+                            <tr>
+                                <td>Discription </td>
+                                <td>:</td> >
+                                <td id="description">Value</td>
+                            </tr>
+                            <tr>
+                                <td>DownloadURL</td>
+                                <td>:</td> >
+                                <td id="downloadurl">Value</td>
+                            </tr>
+                        </tbody>
+                    </table>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
@@ -227,7 +280,7 @@
                 .enter().append("circle")
                 .attr("r", function (d) { return 5 })
                 .attr('data-bs-toggle', "modal")
-                .attr('data-bs-target', "#exampleModal")
+                .attr('data-bs-target', `#exampleModal`)
                 .style("fill", function (d) {
                     console.log(d);
                     return 'white'
@@ -238,6 +291,9 @@
                     .on("start", dragstarted)
                     .on("drag", dragged)
                     .on("end", dragended))
+                    .on("click", (d)=>{
+                        d3.select(this).attr('data-bs-target', `${d.id}`);
+                    })
 
             var label = svg.append("g")
                 .attr("class", "labels")
@@ -319,10 +375,91 @@
 
     }
 
+    function model_genrator(data){
+        ele = `    <!-- modal -->
+    <div class="modal fade" id="${data['id']}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <table>
+                        <tbody>
+                            <tr>
+                                <td>Title </td>
+                                <td>:</td>
+                                <td id="title">${data['title']}</td>
+                            </tr>
+                            <tr>
+                                <td>Name </td>
+                                <td>:</td>
+                                <td id="name">${data['name']}</td>
+                            </tr>
+                            <tr>
+                                <td>Publisher </td>
+                                <td>:</td>
+                                <td id="publisher">${data['publisher']['name']}</td>
+                            </tr>
+                            <tr>
+                                <td>Issued On </td>
+                                <td>:</td>
+                                <td id="issued">${data['issued']}</td>
+                            </tr>
+                            <tr>
+                                <td>Liscence </td>
+                                <td>:</td>
+                                <td id="liscence">${data['liscence']}</td>
+                            </tr>
+                            <tr>
+                                <td>Citation </td>
+                                <td>:</td>
+                                <td id="citation">${data['citation']}</td>
+                            </tr>
+                            <tr>
+                                <td>Languauge </td>
+                                <td>:</td>
+                                <td id="languauge">${data['language']}</td>
+                            </tr>
+                            <tr>
+                                <td>Keywords </td>
+                                <td>:</td>
+                                <td id="keywords">${data['keywords']}</td>
+                            </tr>
+                            <tr>
+                                <td>Discription </td>
+                                <td>:</td> >
+                                <td id="description">${data['description']}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary">Save changes</button>
+                </div>
+            </div>
+        </div>
+    </div>
+`;
+        return ele;
+    }
+
+    function add_model(ele){
+        e0 = document.createElement('div').innerHTML = ele;
+        document.getElementById('body').appendChild(e0);
+    }
+
+    {% for i in data['nodes'] %}
+        console.log("I: ", "{{i}}")
+        document.getElementById.innerHTML = add_model(model_genrator('{{ i }}'))
+    {% endfor %}
+
+
 
     function query_dataset() {
         location.href = `/dataset/${document.getElementById("search").value}`
-
     }
 
 </script>
