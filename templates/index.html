@@ -8,11 +8,16 @@
     <title>Document</title>
 
     <script src="https://d3js.org/d3.v7.min.js"></script>
-
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous">
 </head>
 
 <body>
-
+    <nav class="navbar navbar-light bg-light p-3">
+        <a class="navbar-brand" href="#">
+          <img src="logo.png" width="30" height="30" class="d-inline-block align-top" alt="">
+          NASA
+        </a>
+      </nav>
     <svg></svg>
 
     <script>
@@ -37,17 +42,18 @@
 
         color = (value) => {
             colors = {
-                "Astronautics" : "#ff6666",
-                "General": "#ff6666",
-                "Mathematical and Computer Sciences": "#ff6666",
-                "Social and Information Sciences": "#ff6666",
-                "Engineering": "#ff6666",
-                "Aeronautics": "#ff6666",
-                "Geosciences": "#ff6666",
-                "Space Sciences": "#ff6666",
-                "Physics": "#ff6666",
-                "Life Sciences": "#ff6666",
-                "Chemistry and Materials" : "#ff6666"
+                "Astronautics" : "#9d4edd",
+                "General": "#480ca8",
+                "Mathematical and Computer Sciences": "#fcbf49",
+                "Social and Information Sciences": "#f77f00",
+                "Engineering": "#d62828",
+                "Aeronautics": "#4895ef",
+                "Geosciences": "#e7c6ff",
+                "Space Sciences": "#3f37c9",
+                "Physics": "#06d6a0",
+                "Life Sciences": "#ffafcc",
+                "Chemistry and Materials" : "#ffc600",
+                "backgoroundColor":"#efefd0"
             }
 
             return colors[value];
@@ -66,7 +72,7 @@
                 .attr("viewBox", `-${width / 2} -${height / 2} ${width} ${height}`)
                 .style("display", "block")
                 .style("margin", "0 -14px")
-                .style("background", 'aquamarine')
+                .style("background", color('backgoroundColor'))
                 .style("cursor", "pointer")
                 .on("click", (event) => zoom(event, root));
 
@@ -126,7 +132,7 @@
             // return svg.node();
         };
 
-        d3.json('static/final_data.json')
+        d3.json('final_data.json')
             .then(data => {
                 chart(data);
             });
