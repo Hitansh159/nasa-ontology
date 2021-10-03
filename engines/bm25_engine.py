@@ -6,10 +6,13 @@ nltk.download('punkt')
 from nltk.tokenize import word_tokenize
 from gensim.parsing.preprocessing import STOPWORDS
 from nltk.stem import PorterStemmer
+import json
+
+data = json.laod(open('./static/preprocessed_bm25.json'))
 
 class bm25_engine:
 
-  def __init__(self,data:list,is_preprocessed):
+  def __init__(self,data:list = data['data'],is_preprocessed = True):
     '''
     data : list of documents
     is_preprocessed : true if data is pre_processed else false
