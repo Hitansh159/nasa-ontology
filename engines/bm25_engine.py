@@ -1,5 +1,5 @@
-# if not installed install all the libraries
 from rank_bm25 import *
+import numpy as np
 import re
 import nltk
 nltk.download('punkt')
@@ -60,6 +60,7 @@ class bm25_engine:
     my_str = text.lower()
     my_str = self.spl_chars_removal(my_str)
     my_str = self.stopwprds_removal_gensim_custom(my_str)
+    #print(list_of_docs)
     my_str = ' '.join(list(map(ps.stem,my_str.split(' '))))
     return word_tokenize(my_str)
 
@@ -68,7 +69,14 @@ class bm25_engine:
 
       q = self.preprocess_util(query_str)
       doc_scores = self.bm25.get_scores(q)
-      docs = (doc_scores - min(doc_scores))/ (max(doc_scores) - min(doc_scores))
+
+      docs = None
+      if (max(doc_scores) <= 0.001):
+        docs = np.array([0 for i in doc_scores])
+      elif max(doc_scores) - min(doc_scores) <= 0.0001:
+        docs = np.array([1 for i in doc_scores])
+      else:
+        docs = (doc_scores - min(doc_scores))/ (max(doc_scores) - min(doc_scores))
       docs = [ (i,v) for (i,v) in enumerate(docs)]
       docs = sorted(docs, key = lambda x: x[1], reverse = True)
 
