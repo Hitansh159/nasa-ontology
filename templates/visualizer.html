@@ -77,22 +77,9 @@
                             <div class="form-check p-3 m-3 ">
                                 <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
                                 <label class="form-check-label" for="flexCheckDefault">
-                                    Default checkbox
+                                    Publisher
                                 </label>
                             </div>
-                            <div class="form-check p-3  m-3">
-                                <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-                                <label class="form-check-label" for="flexCheckDefault">
-                                    Default checkbox
-                                </label>
-                            </div>
-                            <div class="form-check p-3  m-3">
-                                <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-                                <label class="form-check-label" for="flexCheckDefault">
-                                    Default checkbox
-                                </label>
-                            </div>
-
 
                         </div>
                         <div>
@@ -139,21 +126,15 @@
     </div>
 
     <!-- modal -->
-    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
+    <div class="modal fade " id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-xl  modal-dialog-scrollable">
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
-                <div class="modal-body">
-                    <table>
+                <div class="modal-body"><table>
                         <tbody>
-                            <tr>
-                                <td>Title </td>
-                                <td>:</td>
-                                <td id="title">title</td>
-                            </tr>
                             <tr>
                                 <td>Name </td>
                                 <td>:</td>
@@ -191,20 +172,19 @@
                             </tr>
                             <tr>
                                 <td>Discription </td>
-                                <td>:</td> >
+                                <td>:</td> 
                                 <td id="description">Value</td>
                             </tr>
                             <tr>
                                 <td>DownloadURL</td>
-                                <td>:</td> >
-                                <td id="downloadurl">Value</td>
+                                <td>:</td> 
+                                <td> <a id="downloadurl">click here</a> </td>
                             </tr>
                         </tbody>
                     </table>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-primary">Save changes</button>
                 </div>
             </div>
         </div>
@@ -278,21 +258,27 @@
                 .selectAll("circle")
                 .data(graph.nodes)
                 .enter().append("circle")
+                .attr('class', "container")
                 .attr("r", function (d) { return 5 })
                 .attr('data-bs-toggle', "modal")
-                .attr('data-bs-target', `#exampleModal`)
-                .style("fill", function (d) {
-                    console.log(d);
-                    return 'white'
-                })
+                .attr('data-bs-target',  "#exampleModal")
+                .style("fill", function (d) {return 'white'})
                 .style("stroke", function (d) { return d.stroke })
                 .style("stroke-width", "0px")
                 .call(d3.drag()
                     .on("start", dragstarted)
                     .on("drag", dragged)
                     .on("end", dragended))
-                    .on("click", (d)=>{
-                        d3.select(this).attr('data-bs-target', `${d.id}`);
+                    .on("click", (d,e)=>{
+                        document.getElementById('name').innerText = d.name;
+                        document.getElementById('description').innerText = d.description;
+                        document.getElementById('publisher').innerText = d.publisher.name;
+                        document.getElementById('issued').innerText = d.issued;
+                        document.getElementById('liscence').innerText = d.license;
+                        document.getElementById('citation').innerText = d.citation;
+                        document.getElementById('languauge').innerText = d.language;
+                        document.getElementById('keywords').innerText = d.keyword;
+                        document.getElementById('downloadurl').href = d.landingPage;
                     })
 
             var label = svg.append("g")
@@ -373,94 +359,13 @@
         d.fy = null;
     }
 
-    }
-
-    function model_genrator(data){
-        ele = `    <!-- modal -->
-    <div class="modal fade" id="${data['id']}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                    <table>
-                        <tbody>
-                            <tr>
-                                <td>Title </td>
-                                <td>:</td>
-                                <td id="title">${data['title']}</td>
-                            </tr>
-                            <tr>
-                                <td>Name </td>
-                                <td>:</td>
-                                <td id="name">${data['name']}</td>
-                            </tr>
-                            <tr>
-                                <td>Publisher </td>
-                                <td>:</td>
-                                <td id="publisher">${data['publisher']['name']}</td>
-                            </tr>
-                            <tr>
-                                <td>Issued On </td>
-                                <td>:</td>
-                                <td id="issued">${data['issued']}</td>
-                            </tr>
-                            <tr>
-                                <td>Liscence </td>
-                                <td>:</td>
-                                <td id="liscence">${data['liscence']}</td>
-                            </tr>
-                            <tr>
-                                <td>Citation </td>
-                                <td>:</td>
-                                <td id="citation">${data['citation']}</td>
-                            </tr>
-                            <tr>
-                                <td>Languauge </td>
-                                <td>:</td>
-                                <td id="languauge">${data['language']}</td>
-                            </tr>
-                            <tr>
-                                <td>Keywords </td>
-                                <td>:</td>
-                                <td id="keywords">${data['keywords']}</td>
-                            </tr>
-                            <tr>
-                                <td>Discription </td>
-                                <td>:</td> >
-                                <td id="description">${data['description']}</td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-primary">Save changes</button>
-                </div>
-            </div>
-        </div>
-    </div>
-`;
-        return ele;
-    }
-
-    function add_model(ele){
-        e0 = document.createElement('div').innerHTML = ele;
-        document.getElementById('body').appendChild(e0);
-    }
-
-    {% for i in data['nodes'] %}
-        console.log("I: ", "{{i}}")
-        document.getElementById.innerHTML = add_model(model_genrator('{{ i }}'))
-    {% endfor %}
-
-
-
     function query_dataset() {
         location.href = `/dataset/${document.getElementById("search").value}`
     }
+
+    }
+
+    
 
 </script>
 <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
