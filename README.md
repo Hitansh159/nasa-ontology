@@ -36,7 +36,7 @@ We developed a network visualization , to find relationship between disparate na
 
 Project is based on python Flask framework and D3 for graph genration with help of basic ML
 
-pip install rank_bm25 nltk gensim flask numpy json pickle re 
+pip install rank_bm25 nltk gensim flask numpy json sklearn re 
 
 ## Installation  
 <hr>
