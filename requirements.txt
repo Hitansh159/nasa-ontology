@@ -1,3 +1,11 @@
 rank_bm25
 nltk
 gensim
+rank_bm25 
+nltk
+gensim
+flask 
+numpy 
+json 
+sklearn 
+re
