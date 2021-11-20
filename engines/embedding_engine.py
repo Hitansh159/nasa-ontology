@@ -1,15 +1,13 @@
 import numpy as np
-import json
 import pickle
 from urllib.request import urlopen
-import requests 
 
-model = pickle.load(urlopen('https://download1488.mediafire.com/e1r7fbtzpvsg/d42ui2jpk72lhie/embedding-knn.pkl'))
+pfile = open('./storage/embedding-knn.pkl', 'rb')
+model = pickle.load(pfile)
 
 word_embeddings = {}
-f = urlopen('https://download1502.mediafire.com/9ybvz6z7hnig/zp8pc0tshe9t20b/glove.6B.100d.txt')
+f = open('./storage/glove.6B.100d.txt')
 for line in f:
-    line = line.decode('utf8')
     values = line.split()
     word = values[0]
     coefs = np.asarray(values[1:], dtype='float32')
