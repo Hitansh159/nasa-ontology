@@ -6,7 +6,7 @@ pfile = open('./storage/embedding-knn.pkl', 'rb')
 model = pickle.load(pfile)
 
 word_embeddings = {}
-f = open('./storage/glove.6B.100d.txt')
+f = open('./storage/glove.6B.100d.txt', encoding='utf-8')
 for line in f:
     values = line.split()
     word = values[0]
