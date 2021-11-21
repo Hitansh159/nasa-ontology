@@ -36,18 +36,20 @@ We developed a network visualization , to find relationship between disparate na
 ## Prerequisites
 <hr>
 
-Project is based on python Flask framework and D3 for graph genration with help of basic ML
+Project is based on python
+It requires Python setup with pip
 
-pip install rank_bm25 nltk gensim flask numpy json sklearn re 
 
 ## Installation  
 <hr>
 
-__look into notes to run engine properly__<br>
+
 To install and start server follow the following instructions :  
 `git clone https://github.com/Hitansh159/nasa-ontology.git`  
 <br>
 `cd nasa-ontology`  
+<br>
+`pip install -r requirement.txt`
 <br>
 For Bash  
 ```bash
@@ -55,22 +57,19 @@ export FLASK_APP=app
 flask run
 ```  
 <br>
-For CMD<br>
+For CMD
 
-```
+```CMD
 set FLASK_APP=app
 flask run
 ```  
+<br>
+Go to your link
 
-Go to your link localhost:5000
+`localhost:5000`
 
 ## Contributing
 <hr>
 
 Issue Tracking : https://github.com/Hitansh159/nasa-ontology/issues
-
-Note
-Due to large size of json they have been put in drive 
-download them and put it in `storage` folder
-Link: [Drive link](https://drive.google.com/drive/folders/1mAIdQxHOawEoILkSXuyd3VWTdScaAUmb?usp=sharing)
 
